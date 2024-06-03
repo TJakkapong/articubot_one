@@ -1,0 +1,17 @@
+# This is an empty file, so that git commits the folder correctly
+twist_mux:
+  ros__parameters:
+    topics:
+      navigation:
+        topic   : cmd_vel #cmd_vel_nav
+        timeout : 0.5
+        priority: 50
+      tracker:
+        topic   : web_vel
+        timeout : 0.5
+        priority: 20
+      joystick:
+        topic   : joy_vel
+        timeout : 0.5
+        priority: 100
+
