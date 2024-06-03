@@ -1,0 +1,177 @@
+<?xml version="1.0" ?>
+<robot name="myrobot">
+    <material name="white">
+        <color rgba="1 1 1 1" />
+    </material>
+    <material name="bone">
+        <color rgba="0.8 0.8 0.8 1" />
+    </material>
+    <material name="orange">
+        <color rgba="1 0.3 0.1 1"/>
+    </material>
+    <material name="gray">
+        <color rgba="0.7 0.7 0.7 1"/>
+    </material>
+    <material name="blue">
+        <color rgba="0.2 0.2 1 1"/>
+    </material>
+    <material name="black">
+        <color rgba="0 0 0 1"/>
+    </material>
+    <material name="red">
+        <color rgba="1 0 0 1"/>
+    </material>
+
+    <!-- Base link -->
+    <link name="base_link">
+        <inertial>
+            <origin xyz="0.00777178436482716 -1.12354729039397E-17 0.246949943244965" rpy="0 0 0" />
+            <mass value="96.0948572509794" />
+            <inertia ixx="3.14245232437096" ixy="-1.04912304881371E-16" ixz="0.0161471407091991" iyy="4.0258724967387" iyz="-1.47864698550876E-16" izz="3.27945603833626" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://articubot_one/meshes/base_link.STL" />
+            </geometry>
+            <material name="gray"/>
+        </visual>
+    </link>
+
+    <!-- Base footprint -->
+    <link name="base_footprint" />
+    <joint name="base_footprint_joint" type="fixed">
+        <origin xyz="0 0 -0.068" rpy="0 0 0" />
+        <parent link="base_link" />
+        <child link="base_footprint" />
+    </joint>
+
+    <!-- Right wheel -->
+    <link name="right_wheel">
+        <inertial>
+            <origin xyz="0.10293 0.271206927284633 0.0555" rpy="0 0 0" />
+            <mass value="0.653369098308289" />
+            <inertia ixx="0.00138427900772175" ixy="1.30693402906786E-19" ixz="-5.71625798942975E-21" iyy="0.0024820518753049" iyz="2.82402881651372E-20" izz="0.00138427900772175" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://articubot_one/meshes/right_wheel.STL" />
+            </geometry>
+            <material name="black"/>
+        </visual>
+    </link>
+    <joint name="right_wheel_joint" type="continuous">
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <parent link="base_link" />
+        <child link="right_wheel" />
+        <axis xyz="0 1 0" />
+    </joint>
+
+    <!-- Left wheel -->
+    <link name="left_wheel">
+        <inertial>
+            <origin xyz="0.10293 -0.279993072715367 0.0555" rpy="0 0 0" />
+            <mass value="0.653369098308289" />
+            <inertia ixx="0.00138427900772175" ixy="2.72500195003145E-19" ixz="-2.12924816093808E-20" iyy="0.0024820518753049" iyz="-6.74640785923201E-21" izz="0.00138427900772175" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://articubot_one/meshes/left_wheel.STL" />
+            </geometry>
+            <material name="black"/>
+        </visual>
+    </link>
+    <joint name="left_wheel_joint" type="continuous">
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <parent link="base_link" />
+        <child link="left_wheel" />
+        <axis xyz="0 -1 0" />
+    </joint>
+
+    <!-- Caster wheels -->
+    <link name="caster_wheel_left">
+        <inertial>
+            <origin xyz="-0.1163 -0.1508 0.02242" rpy="0 0 0" />
+            <mass value="0.156987742973928" />
+            <inertia ixx="8.82316172591817E-05" ixy="6.84650465930315E-21" ixz="8.231219130141E-21" iyy="0.000155620648655828" iyz="9.08354603331562E-22" izz="8.82316172591817E-05" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://articubot_one/meshes/caster_wheel_right.STL" />
+            </geometry>
+            <material name="red"/>
+        </visual>
+    </link>
+    <joint name="caster_wheel_left_joint" type="fixed">
+        <origin xyz="0 -0.302 0" rpy="0 0 0" />
+        <parent link="base_link" />
+        <child link="caster_wheel_left" />
+    </joint>
+
+    <link name="caster_wheel_right">
+        <inertial>
+            <origin xyz="-0.1163 0.1508 0.02242" rpy="0 0 0" />
+            <mass value="0.156987742973928" />
+            <inertia ixx="8.82316172591817E-05" ixy="6.84650465930315E-21" ixz="8.231219130141E-21" iyy="0.000155620648655828" iyz="9.08354603331562E-22" izz="8.82316172591817E-05" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://articubot_one/meshes/caster_wheel_right.STL" />
+            </geometry>
+            <material name="red"/>
+        </visual>
+    </link>
+    <joint name="caster_wheel_right_joint" type="fixed">
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <parent link="base_link" />
+        <child link="caster_wheel_right" />
+    </joint>
+
+    <!-- Laser frame 1 -->
+    <link name="laser_frame_1">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <mass value="0" />
+            <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://articubot_one/meshes/laser_frame.STL" />
+            </geometry>
+            <material name="black"/>
+        </visual>
+    </link>
+    <joint name="laser_frame_1_joint" type="fixed">
+        <origin xyz="0.22 0 0.215" rpy="0 0 3.14159" />
+        <parent link="base_link" />
+        <child link="laser_frame_1" />
+    </joint>
+
+    <!-- Laser frame 2 -->
+    <link name="laser_frame_2">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <mass value="0" />
+            <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://articubot_one/meshes/laser_frame.STL" />
+            </geometry>
+            <material name="black"/>
+        </visual>
+    </link>
+    <joint name="laser_frame_2_joint" type="fixed">
+        <origin xyz="-0.22 0 0.215" rpy="0 0 0" />
+        <parent link="base_link" />
+        <child link="laser_frame_2" />
+    </joint>
+
+
+</robot>
